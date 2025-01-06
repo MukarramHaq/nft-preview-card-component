@@ -1,18 +1,5 @@
 @use 'mixins';
-
-// Colors
-$soft-blue: hsl(215, 51%, 70%);
-$cyan: hsl(178, 100%, 50%);
-$main-bg: hsl(217, 54%, 11%);
-$card-bg: hsl(216, 50%, 16%);
-$line: hsl(215, 32%, 27%);
-$overlay-color: rgba(0, 255, 255, 0.587);
-
-$base-padding: 1.5rem;
-$base-card-width: 21.875rem;
-$image-dimensions: 18.875rem;
-$avatar-image: 2.0625rem;
-$border-radius: 0.5rem;
+@use 'variables' as *;
 
 *,
 *::before,
