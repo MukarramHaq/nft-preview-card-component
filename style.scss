@@ -6,11 +6,13 @@ $cyan: hsl(178, 100%, 50%);
 $main-bg: hsl(217, 54%, 11%);
 $card-bg: hsl(216, 50%, 16%);
 $line: hsl(215, 32%, 27%);
+$overlay-color: rgba(0, 255, 255, 0.587);
 
 $base-padding: 1.5rem;
 $base-card-width: 21.875rem;
 $image-dimensions: 18.875rem;
 $avatar-image: 2.0625rem;
+$border-radius: 0.5rem;
 
 *,
 *::before,
@@ -55,50 +57,34 @@ body{
         align-self: center;
     }
 
-    .img-wrapper {
-        width: $image-dimensions;
-        height: $image-dimensions;
-        border-radius: 0.5rem;
-        background-image: url('./images/image-equilibrium.jpg');
-        @include mixins.background-image;
-        position: relative; /* Ensures proper positioning for .view and overlay */
-        
-      
-        .view {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          display: none; /* Initially hidden */
-          z-index: 2; /* Ensure it's above any background overlay */
-        }
-      
-        &::before {
-          content: '';
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          z-index: 1; /* Sits above background but below .view */
-        }
-      
-        &:hover::before {
-          background-color: $cyan;
-          opacity: 50%;
-          cursor: pointer;
-        }
-      
-        &:hover .view {
-          display: block; /* Show view icon on hover */
-          cursor: pointer;
-        }
-      }
-      
-      
+    .img-wrapper{
+        position:relative;
+        border-radius: $border-radius;
 
-    .main-img {
-        width: $image-dimensions;
-        height: $image-dimensions;
-        border-radius: 0.5rem;
+        .main-image{
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: $border-radius;
+        }
+
+        .overlay{
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            @include mixins.flex-row($justify-content: center);
+            background-color:$overlay-color; 
+            opacity: 0;
+            border-radius: $border-radius;
+        }
+
+        &:hover .overlay{
+            opacity: 1;
+            cursor: pointer;
+        }
+
     }
 
     .flex-box{

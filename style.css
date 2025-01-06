@@ -41,43 +41,32 @@ body {
   align-self: center;
 }
 .card .img-wrapper {
-  width: 18.875rem;
-  height: 18.875rem;
+  position: relative;
   border-radius: 0.5rem;
-  background-image: url("./images/image-equilibrium.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative; /* Ensures proper positioning for .view and overlay */
 }
-.card .img-wrapper .view {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: none; /* Initially hidden */
-  z-index: 2; /* Ensure it's above any background overlay */
-}
-.card .img-wrapper::before {
-  content: "";
-  position: absolute;
+.card .img-wrapper .main-image {
+  display: block;
   width: 100%;
-  height: 100%;
-  z-index: 1; /* Sits above background but below .view */
-}
-.card .img-wrapper:hover::before {
-  background-color: hsl(178, 100%, 50%);
-  opacity: 50%;
-  cursor: pointer;
-}
-.card .img-wrapper:hover .view {
-  display: block; /* Show view icon on hover */
-  cursor: pointer;
-}
-.card .main-img {
-  width: 18.875rem;
-  height: 18.875rem;
+  height: auto;
   border-radius: 0.5rem;
+}
+.card .img-wrapper .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4375rem;
+  background-color: rgba(0, 255, 255, 0.587);
+  opacity: 0;
+  border-radius: 0.5rem;
+}
+.card .img-wrapper:hover .overlay {
+  opacity: 1;
+  cursor: pointer;
 }
 .card .flex-box {
   display: flex;
