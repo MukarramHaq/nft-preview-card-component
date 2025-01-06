@@ -1,0 +1,12 @@
+@mixin flex-row($justify-content: space-between, $align-items: center, $gap: 0.4375rem){
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+@mixin background-image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

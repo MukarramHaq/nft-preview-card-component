@@ -1,0 +1,137 @@
+@use 'mixins';
+
+// Colors
+$soft-blue: hsl(215, 51%, 70%);
+$cyan: hsl(178, 100%, 50%);
+$main-bg: hsl(217, 54%, 11%);
+$card-bg: hsl(216, 50%, 16%);
+$line: hsl(215, 32%, 27%);
+
+$base-padding: 1.5rem;
+$base-card-width: 21.875rem;
+$image-dimensions: 18.875rem;
+$avatar-image: 2.0625rem;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body{
+    @include mixins.flex-row($justify-content: center);
+    min-height: 100svh;
+    background-color: $main-bg;
+    font-family: 'Outfit';
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    padding: $base-padding;
+    width: $base-card-width;
+    color: white;
+    background-color: $card-bg;
+    border-radius: 0.9375rem;
+
+    h3{
+        font-weight: 600;
+        &:hover{
+            color: $cyan;
+            cursor: pointer;
+        }
+    }
+
+    hr{
+        border: 1px solid $line;
+    }
+
+    p {
+        color: $soft-blue;
+        font-weight: 300;
+    }    
+
+    svg{
+        align-self: center;
+    }
+
+    .img-wrapper {
+        width: $image-dimensions;
+        height: $image-dimensions;
+        border-radius: 0.5rem;
+        background-image: url('./images/image-equilibrium.jpg');
+        @include mixins.background-image;
+        position: relative; /* Ensures proper positioning for .view and overlay */
+        
+      
+        .view {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: none; /* Initially hidden */
+          z-index: 2; /* Ensure it's above any background overlay */
+        }
+      
+        &::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          z-index: 1; /* Sits above background but below .view */
+        }
+      
+        &:hover::before {
+          background-color: $cyan;
+          opacity: 50%;
+          cursor: pointer;
+        }
+      
+        &:hover .view {
+          display: block; /* Show view icon on hover */
+          cursor: pointer;
+        }
+      }
+      
+      
+
+    .main-img {
+        width: $image-dimensions;
+        height: $image-dimensions;
+        border-radius: 0.5rem;
+    }
+
+    .flex-box{
+        @include mixins.flex-row($justify-content: space-between);
+        .flex__one{
+            @include mixins.flex-row;
+            p{
+                color: $cyan;
+                font-weight: bold;
+            }
+        }
+
+        .flex__two{
+            @include mixins.flex-row;
+        }
+    }
+
+    .avatar{
+        @include mixins.flex-row($justify-content: start, $gap: 1rem);
+        img {
+            align-self: center;
+            border-radius: 50%;
+            width: $avatar-image;
+            height: $avatar-image;
+            border: 1px solid white;
+        }
+        span{
+            font-weight: bold;
+            color: white;
+            &:hover{
+                color: $cyan;
+                cursor: pointer;
+            }
+        }
+    }
+}
